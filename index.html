@@ -7,147 +7,69 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    /* Pink & Cute Palette */
     --ink: #4a3b3b;
-    --paper: #fff5f7; /* Very light pink/white */
-    --cream: #ffe4e9; /* Soft pink header/tabs */
-    --accent: #ff8fa3; /* Main pink */
-    --accent2: #ffb3c1; /* Lighter pink */
+    --paper: #fff5f7;
+    --cream: #ffe4e9;
+    --accent: #ff8fa3;
+    --accent2: #ffb3c1;
     --muted: #a0888c;
-    --done: #95d5b2; /* Soft mint for completion */
+    --done: #95d5b2;
     --border: #f7cad0;
     --white: #ffffff;
   }
   
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  
-  body { 
-    background: var(--paper); 
-    color: var(--ink); 
-    font-family: 'Quicksand', sans-serif; /* Rounded, cuter font */
-    min-height: 100vh; 
-    padding: 0; 
-  }
+  body { background: var(--paper); color: var(--ink); font-family: 'Quicksand', sans-serif; min-height: 100vh; padding: 0; }
 
-  .header { 
-    background: var(--accent); 
-    color: white; 
-    padding: 48px 60px 36px; 
-    position: relative; 
-    overflow: hidden;
-    border-bottom: 5px solid var(--accent2);
-  }
-
-  /* Decorative Icon Background */
-  .header::before { 
-    content: '✿'; 
-    font-size: 150px; 
-    color: rgba(255,255,255,0.2); 
-    position: absolute; 
-    right: 20px; 
-    top: -20px; 
-    pointer-events: none; 
-  }
-
+  .header { background: var(--accent); color: white; padding: 48px 60px 36px; position: relative; overflow: hidden; border-bottom: 5px solid var(--accent2); }
+  .header::before { content: '✿'; font-size: 150px; color: rgba(255,255,255,0.2); position: absolute; right: 20px; top: -20px; pointer-events: none; }
   .header-label { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--paper); margin-bottom: 12px; font-weight: bold;}
-  
   .header h1 { font-family: 'Playfair Display', serif; font-size: 48px; font-weight: 900; line-height: 1.05; margin-bottom: 10px; }
-  
   .header p { font-size: 14px; color: rgba(255,255,255,0.9); max-width: 480px; line-height: 1.6; }
 
   .progress-bar-wrap { margin-top: 28px; display: flex; align-items: center; gap: 16px; }
-  
-  .progress-bar { 
-    flex: 1; 
-    height: 12px; 
-    background: rgba(255,255,255,0.3); 
-    border-radius: 10px; 
-    max-width: 320px; 
-    overflow: hidden;
-  }
-  
+  .progress-bar { flex: 1; height: 12px; background: rgba(255,255,255,0.3); border-radius: 10px; max-width: 320px; overflow: hidden; }
   .progress-fill { height: 100%; background: var(--white); border-radius: 10px; transition: width 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); width: 0%; }
-  
   .progress-label { font-family: 'DM Mono', monospace; font-size: 12px; color: white; font-weight: bold;}
 
-  .nav { display: flex; gap: 0; padding: 0 60px; background: var(--cream); border-bottom: 1px solid var(--border); overflow-x: auto; }
-  
-  .nav-tab { 
-    font-family: 'Quicksand', sans-serif; 
-    font-weight: 600;
-    font-size: 12px; 
-    letter-spacing: 1px; 
-    text-transform: uppercase; 
-    padding: 16px 24px; 
-    cursor: pointer; 
-    border: none; 
-    background: transparent; 
-    color: var(--muted); 
-    border-bottom: 4px solid transparent; 
-    transition: all 0.3s; 
-  }
-  
+  .nav { display: flex; gap: 0; padding: 0 60px; background: var(--cream); border-bottom: 1px solid var(--border); overflow-x: auto; scrollbar-width: none; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav-tab { font-family: 'Quicksand', sans-serif; font-weight: 600; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; padding: 16px 24px; cursor: pointer; border: none; background: transparent; color: var(--muted); border-bottom: 4px solid transparent; white-space: nowrap; transition: all 0.3s; }
   .nav-tab.active { color: var(--accent); border-bottom-color: var(--accent); background: white; }
 
   .main { padding: 40px 60px; max-width: 1100px; }
-  
   .phase-view { display: none; }
   .phase-view.active { display: block; }
 
+  .phase-meta { margin-bottom: 32px; padding-bottom: 24px; border-bottom: 2px dashed var(--border); }
   .phase-title { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 700; color: var(--accent); margin-bottom: 6px; }
+  .phase-subtitle { font-size: 13px; color: var(--muted); line-height: 1.6; max-width: 600px; }
 
-  .task { 
-    display: flex; 
-    align-items: flex-start; 
-    gap: 12px; 
-    padding: 16px; 
-    background: white; 
-    border: 2px solid var(--border); 
-    border-radius: 15px; /* Rounded corners for cute look */
-    cursor: pointer; 
-    transition: all 0.2s; 
-    margin-bottom: 10px;
-    box-shadow: 0 4px 0 var(--border);
-  }
-  
+  .sprint { margin-bottom: 36px; }
+  .sprint-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+  .sprint-num { background: var(--accent); color: white; padding: 4px 10px; border-radius: 20px; font-size: 10px; font-weight: bold; }
+  .sprint-title { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--ink); }
+
+  .task { display: flex; align-items: flex-start; gap: 12px; padding: 16px; background: white; border: 2px solid var(--border); border-radius: 15px; cursor: pointer; transition: all 0.2s; margin-bottom: 10px; box-shadow: 0 4px 0 var(--border); }
   .task:hover { transform: translateY(-2px); box-shadow: 0 6px 0 var(--border); border-color: var(--accent2); }
-  
-  .task.done { 
-    background: #fdfdfd; 
-    border-color: var(--done); 
-    box-shadow: 0 2px 0 var(--done);
-    opacity: 0.8;
-  }
-  
-  .task-check { 
-    width: 22px; 
-    height: 22px; 
-    border: 2px solid var(--accent2); 
-    border-radius: 50%; /* Circle checks are cuter */
-    flex-shrink: 0; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-  }
-  
+  .task.done { background: #fafafa; border-color: var(--done); box-shadow: 0 2px 0 var(--done); opacity: 0.8; }
+  .task.done .task-text { text-decoration: line-through; color: var(--muted); }
+
+  .task-check { width: 22px; height: 22px; border: 2px solid var(--accent2); border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
   .task.done .task-check { background: var(--done); border-color: var(--done); color: white; }
-  
-  .task-check::after { content: '❤'; font-size: 10px; display: none; } /* Heart instead of checkmark */
+  .task-check::after { content: '❤'; font-size: 10px; display: none; }
   .task.done .task-check::after { display: block; }
 
-  .task-tag { 
-    font-family: 'DM Mono', monospace; 
-    font-size: 9px; 
-    padding: 4px 10px; 
-    border-radius: 20px; 
-    background: var(--cream); 
-    color: var(--accent);
-    font-weight: bold;
-  }
+  .task-body { flex: 1; }
+  .task-text { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+  .task-note { font-size: 12px; color: var(--muted); line-height: 1.4; }
 
-  /* Keep your content styles but soften them */
-  .deliverable-box { background: white; border: 2px dashed var(--accent); color: var(--ink); padding: 20px 24px; border-radius: 15px; margin-top: 28px; }
-  .deliverable-item { background: var(--paper); border: 1px solid var(--border); color: var(--accent); border-radius: 10px; }
+  .task-tag { font-family: 'DM Mono', monospace; font-size: 9px; padding: 4px 10px; border-radius: 20px; background: var(--cream); color: var(--accent); font-weight: bold; align-self: center; }
+
+  .deliverable-box { background: white; border: 2px dashed var(--accent); padding: 20px 24px; border-radius: 15px; margin-top: 28px; }
+  .deliverable-box h4 { font-size: 12px; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; letter-spacing: 1px; }
+  .deliverable-list { display: flex; flex-wrap: wrap; gap: 8px; }
+  .deliverable-item { font-size: 11px; padding: 6px 12px; background: var(--paper); border: 1px solid var(--border); border-radius: 10px; color: var(--accent); font-weight: 600; }
 
   @media (max-width: 700px) { .header { padding: 32px 24px 28px; } .nav { padding: 0 24px; } .main { padding: 28px 24px; } }
 </style>
@@ -160,7 +82,7 @@
   <p>12-week agency infrastructure sprint. One year to go from solo contributor to owner-operator. Track it here.</p>
   <div class="progress-bar-wrap">
     <div class="progress-bar"><div class="progress-fill" id="globalFill"></div></div>
-    <div class="progress-label" id="globalLabel">0 / 0 tasks complete</div>
+    <div class="progress-label" id="globalLabel">0 / 0 tasks done!</div>
   </div>
 </div>
 
@@ -173,18 +95,108 @@
 
 <div class="main">
   <div class="phase-view active" id="m1">
-    <div class="phase-title">Month 1: Foundation</div>
-    <div class="tasks">
-        <div class="task" data-id="m1-t1" onclick="toggleTask(this)"><div class="task-check"></div><div class="task-body"><div class="task-text">Write your agency's founding document</div><div class="task-note">Your internal north star.</div></div><span class="task-tag">Doc</span></div>
-        <div class="task" data-id="m1-t2" onclick="toggleTask(this)"><div class="task-check"></div><div class="task-body"><div class="task-text">Define your 3 core service pillars</div><div class="task-note">Pick 3 you can do well.</div></div><span class="task-tag">Strategy</span></div>
-        <div class="task" data-id="m1-t3" onclick="toggleTask(this)"><div class="task-check"></div><div class="task-body"><div class="task-text">Map your target client (ICP)</div><div class="task-note">Who are they?</div></div><span class="task-tag">Strategy</span></div>
+    <div class="phase-meta">
+      <div class="phase-title">Month 1: Foundation</div>
+      <div class="phase-subtitle">Pure infrastructure. Before you sell, know exactly what you're building and who it's for.</div>
+    </div>
+    
+    <div class="sprint">
+      <div class="sprint-header"><span class="sprint-num">Sprint 1</span><span class="sprint-title">Clarity & Positioning</span></div>
+      <div class="tasks">
+        <div class="task" data-id="m1-s1-t1" onclick="toggleTask(this)"><div class="task-check"></div><div class="task-body"><div class="task-text">Write your agency's founding document</div><div class="task-note">A 1-page internal brief. Your north star.</div></div><span class="task-tag">Doc</span></div>
+        <div class="task" data-id="m1-s1-t2" onclick="toggleTask(this)"><div class="task-check"></div><div class="task-body"><div class="task-text">Define your 3 core service pillars</div><div class="task-note">Pick 3 you can do well and charge for.</div></div><span class="task-tag">Strategy</span></div>
+        <div class="task" data-id="m1-s1-t3" onclick="toggleTask(this)"><div class="task-check"></div><div class="task-body"><div class="task-text">Map your target client (ICP)</div><div class="task-note">Who are they and what is their pain point?</div></div><span class="task-tag">Strategy</span></div>
+        <div class="task" data-id="m1-s1-t4" onclick="toggleTask(this)"><div class="task-check"></div><div class="task-body"><div class="task-text">Audit existing case studies</div><div class="task-note">Write 2-3 mini docs on your wins (e.g. Love Lingo).</div></div><span class="task-tag">Doc</span></div>
+      </div>
+    </div>
+
+    <div class="sprint">
+      <div class="sprint-header"><span class="sprint-num">Sprint 2</span><span class="sprint-title">The Master Questionnaire</span></div>
+      <div class="tasks">
+        <div class="task" data-id="m1-s2-t1" onclick="toggleTask(this)"><div class="task-check"></div><div class="task-body"><div class="task-text">Research: Collect 5-8 intake questionnaires</div><div class="task-note">See what other agencies are asking.</div></div><span class="task-tag">Research</span></div>
+        <div class="task" data-id="m1-s2-t2" onclick="toggleTask(this)"><div class="task-check"></div><div class="task-body"><div class="task-text">Draft Section 1: Business Context</div><div class="task-note">15-20 questions to understand the brand.</div></div><span class="task-tag">Doc</span></div>
+        <div class="task" data-id="m1-s2-t3" onclick="toggleTask(this)"><div class="task-check"></div><div class="task-body"><div class="task-text">Draft Section 2: Audience & Positioning</div><div class="task-note">Questions to define their customer fears/wants.</div></div><span class="task-tag">Doc</span></div>
+        <div class="task" data-id="m1-s2-t4" onclick="toggleTask(this)"><div class="task-check"></div><div class="task-body"><div class="task-text">Draft Section 3: Content & Social</div><div class="task-note">Platforms, frequency, and brand accounts.</div></div><span class="task-tag">Doc</span></div>
+        <div class="task" data-id="m1-s2-t5" onclick="toggleTask(this)"><div class="task-check"></div><div class="task-body"><div class="task-text">Draft Section 4: Goals & Budget</div><div class="task-note">Success metrics and constraints.</div></div><span class="task-tag">Doc</span></div>
+        <div class="task" data-id="m1-s2-t6" onclick="toggleTask(this)"><div class="task-check"></div><div class="task-body"><div class="task-text">Write the master AI prompt</div><div class="task-note">Turn answers into a full audit output.</div></div><span class="task-tag">Build</span></div>
+      </div>
+    </div>
+
+    <div class="deliverable-box">
+      <h4>Month 1 Deliverables</h4>
+      <div class="deliverable-list">
+        <span class="deliverable-item">Founding brief</span><span class="deliverable-item">ICP doc</span><span class="deliverable-item">Case studies</span><span class="deliverable-item">Questionnaire</span><span class="deliverable-item">AI prompt</span>
+      </div>
     </div>
   </div>
 
+  <div class="phase-view" id="m2">
+    <div class="phase-meta">
+      <div class="phase-title">Month 2: Services & Offers</div>
+      <div class="phase-subtitle">Building what you actually sell—packages, pricing, and contracts.</div>
+    </div>
+    <div class="sprint">
+        <div class="sprint-header"><span class="sprint-num">Sprint 3</span><span class="sprint-title">Service Packages</span></div>
+        <div class="tasks">
+            <div class="task" data-id="m2-s3-t1" onclick="toggleTask(this)"><div class="task-check"></div><div class="task-body"><div class="task-text">Build service menu document</div><div class="task-note">Deliverables per month and time commitment.</div></div><span class="task-tag">Doc</span></div>
+            <div class="task" data-id="m2-s3-t2" onclick="toggleTask(this)"><div class="task-check"></div><div class="task-body"><div class="task-text">3-tier Social Media packages</div><div class="task-note">Starter / Growth / Full Stack.</div></div><span class="task-tag">Build</span></div>
+            <div class="task" data-id="m2-s3-t3" onclick="toggleTask(this)"><div class="task-check"></div><div class="task-body"><div class="task-text">3-tier Podcast packages</div><div class="task-note">From pre-production to full-stack.</div></div><span class="task-tag">Build</span></div>
+            <div class="task" data-id="m2-s3-t4" onclick="toggleTask(this)"><div class="task-check"></div><div class="task-body"><div class="task-text">Brand Strategy project scope</div><div class="task-note">Premium one-time project scope.</div></div><span class="task-tag">Build</span></div>
+            <div class="task" data-id="m2-s3-t5" onclick="toggleTask(this)"><div class="task-check"></div><div class="task-body"><div class="task-text">Research competitor pricing</div><div class="task-note">Benchmark against 15 agencies.</div></div><span class="task-tag">Research</span></div>
+        </div>
+    </div>
+    <div class="sprint">
+        <div class="sprint-header"><span class="sprint-num">Sprint 4</span><span class="sprint-title">Legal & Financial</span></div>
+        <div class="tasks">
+            <div class="task" data-id="m2-s4-t1" onclick="toggleTask(this)"><div class="task-check"></div><div class="task-body"><div class="task-text">Draft client contract template</div><div class="task-note">Include scope, payment, and kill fee.</div></div><span class="task-tag">Doc</span></div>
+            <div class="task" data-id="m2-s4-t2" onclick="toggleTask(this)"><div class="task-check"></div><div class="task-body"><div class="task-text">Build invoice template</div><div class="task-note">Professional layout in Canva/Notion.</div></div><span class="task-tag">Build</span></div>
+            <div class="task" data-id="m2-s4-t3" onclick="toggleTask(this)"><div class="task-check"></div><div class="task-body"><div class="task-text">Create proposal/SOW template</div><div class="task-note">What you send before the contract.</div></div><span class="task-tag">Doc</span></div>
+            <div class="task" data-id="m2-s4-t4" onclick="toggleTask(this)"><div class="task-check"></div><div class="task-body"><div class="task-text">Research GST requirements</div><div class="task-note">Process and thresholds for India.</div></div><span class="task-tag">Research</span></div>
+            <div class="task" data-id="m2-s4-t5" onclick="toggleTask(this)"><div class="task-check"></div><div class="task-body"><div class="task-text">Build client tracker spreadsheet</div><div class="task-note">Pipeline and active status tracking.</div></div><span class="task-tag">Build</span></div>
+        </div>
+    </div>
   </div>
 
+  <div class="phase-view" id="m3">
+    <div class="phase-meta">
+      <div class="phase-title">Month 3: Systems + R&D</div>
+      <div class="phase-subtitle">Operations to prevent burnout and deep market research.</div>
+    </div>
+    <div class="sprint">
+        <div class="sprint-header"><span class="sprint-num">Sprint 5</span><span class="sprint-title">Delivery Systems</span></div>
+        <div class="tasks">
+            <div class="task" data-id="m3-s5-t1" onclick="toggleTask(this)"><div class="task-check"></div><div class="task-body"><div class="task-text">Design onboarding flow</div><div class="task-note">Step-by-step from lead to live.</div></div><span class="task-tag">Build</span></div>
+            <div class="task" data-id="m3-s5-t2" onclick="toggleTask(this)"><div class="task-check"></div><div class="task-body"><div class="task-text">Build onboarding kit</div><div class="task-note">What the client gets on Day 1.</div></div><span class="task-tag">Doc</span></div>
+            <div class="task" data-id="m3-s5-t3" onclick="toggleTask(this)"><div class="task-check"></div><div class="task-body"><div class="task-text">Social Media delivery SOP</div><div class="task-note">Approval flow and feedback rules.</div></div><span class="task-tag">Doc</span></div>
+            <div class="task" data-id="m3-s5-t4" onclick="toggleTask(this)"><div class="task-check"></div><div class="task-body"><div class="task-text">Podcast production SOP</div><div class="task-note">Pre-production to publishing.</div></div><span class="task-tag">Doc</span></div>
+            <div class="task" data-id="m3-s5-t5" onclick="toggleTask(this)"><div class="task-check"></div><div class="task-body"><div class="task-text">Monthly reporting template</div><div class="task-note">Retention tool focused on metrics.</div></div><span class="task-tag">Build</span></div>
+        </div>
+    </div>
+    <div class="sprint">
+        <div class="sprint-header"><span class="sprint-num">Sprint 6</span><span class="sprint-title">Market Research</span></div>
+        <div class="tasks">
+            <div class="task" data-id="m3-s6-t1" onclick="toggleTask(this)"><div class="task-check"></div><div class="task-body"><div class="task-text">Udaipur Business Mapping</div><div class="task-note">Identify businesses outsourcing to Jaipur.</div></div><span class="task-tag">Research</span></div>
+            <div class="task" data-id="m3-s6-t2" onclick="toggleTask(this)"><div class="task-check"></div><div class="task-body"><div class="task-text">Remote Client Tool Stack</div><div class="task-note">Notion, Wise, Loom, etc.</div></div><span class="task-tag">Build</span></div>
+            <div class="task" data-id="m3-s6-t3" onclick="toggleTask(this)"><div class="task-check"></div><div class="task-body"><div class="task-text">International Pricing Framework</div><div class="task-note">Geo-based tiering (India vs UK/US).</div></div><span class="task-tag">Strategy</span></div>
+        </div>
+    </div>
+  </div>
+
+  <div class="phase-view" id="ongoing">
+    <div class="phase-meta">
+      <div class="phase-title">Ongoing Rituals</div>
+      <div class="phase-subtitle">Weekly and monthly habits that ensure long-term growth.</div>
+    </div>
+    <div class="tasks">
+        <div class="task" data-id="rit-w1" onclick="toggleTask(this)"><div class="task-check"></div><div class="task-body"><div class="task-text">NBFC Job Documentation (Weekly)</div><div class="task-note">Document one thing you learned about B2B strategy.</div></div><span class="task-tag">Learn</span></div>
+        <div class="task" data-id="rit-w2" onclick="toggleTask(this)"><div class="task-check"></div><div class="task-body"><div class="task-text">Agency Case Study Review (Weekly)</div><div class="task-note">Read one owner's newsletter/strategy.</div></div><span class="task-tag">Research</span></div>
+        <div class="task" data-id="rit-m1" onclick="toggleTask(this)"><div class="task-check"></div><div class="task-body"><div class="task-text">Monthly Retrospective</div><div class="task-note">What did you build? What's blocking you?</div></div><span class="task-tag">Strategy</span></div>
+    </div>
+  </div>
+</div>
+
 <script>
-  // TABS LOGIC
+  // TAB NAVIGATION
   document.querySelectorAll('.nav-tab').forEach(function(btn) {
     btn.addEventListener('click', function() {
       var tabId = this.getAttribute('data-tab');
@@ -195,7 +207,7 @@
     });
   });
 
-  // MEMORY & PROGRESS LOGIC
+  // PROGRESS & LOCALSTORAGE
   function updateProgress() {
     var all = document.querySelectorAll('.task');
     var done = document.querySelectorAll('.task.done');
@@ -203,9 +215,9 @@
     document.getElementById('globalFill').style.width = pct + '%';
     document.getElementById('globalLabel').textContent = done.length + ' / ' + all.length + ' tasks done!';
     
-    // SAVE TO MEMORY
+    // Save checked data-ids to memory
     const completedIds = Array.from(done).map(t => t.getAttribute('data-id'));
-    localStorage.setItem('agencyRoadmapProgress', JSON.stringify(completedIds));
+    localStorage.setItem('hitikaAgencyRoadmap', JSON.stringify(completedIds));
   }
 
   function toggleTask(el) { 
@@ -213,9 +225,9 @@
     updateProgress(); 
   }
 
-  // LOAD FROM MEMORY ON START
+  // ON LOAD: RETRIEVE FROM MEMORY
   window.onload = function() {
-    const saved = JSON.parse(localStorage.getItem('agencyRoadmapProgress')) || [];
+    const saved = JSON.parse(localStorage.getItem('hitikaAgencyRoadmap')) || [];
     saved.forEach(id => {
       const task = document.querySelector(`[data-id="${id}"]`);
       if (task) task.classList.add('done');
