@@ -22,7 +22,8 @@
   body { background: var(--paper); color: var(--ink); font-family: 'Quicksand', sans-serif; min-height: 100vh; padding: 0; }
 
   .header { background: var(--accent); color: white; padding: 48px 60px 36px; position: relative; overflow: hidden; border-bottom: 5px solid var(--accent2); }
-  .header::before { content: '✿'; font-size: 150px; color: rgba(255,255,255,0.2); position: absolute; right: 20px; top: -20px; pointer-events: none; }
+  .header::before { content: 'AGENCY'; font-family: 'Playfair Display', serif; font-weight: 900; font-size: 150px; color: rgba(255,255,255,0.1); position: absolute; right: -20px; top: -30px; letter-spacing: -8px; pointer-events: none; }
+  
   .header-label { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--paper); margin-bottom: 12px; font-weight: bold;}
   .header h1 { font-family: 'Playfair Display', serif; font-size: 48px; font-weight: 900; line-height: 1.05; margin-bottom: 10px; }
   .header p { font-size: 14px; color: rgba(255,255,255,0.9); max-width: 480px; line-height: 1.6; }
@@ -34,44 +35,60 @@
 
   .nav { display: flex; gap: 0; padding: 0 60px; background: var(--cream); border-bottom: 1px solid var(--border); overflow-x: auto; scrollbar-width: none; }
   .nav::-webkit-scrollbar { display: none; }
-  .nav-tab { font-family: 'Quicksand', sans-serif; font-weight: 600; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; padding: 16px 24px; cursor: pointer; border: none; background: transparent; color: var(--muted); border-bottom: 4px solid transparent; white-space: nowrap; transition: all 0.3s; }
+  .nav-tab { font-family: 'Quicksand', sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; padding: 16px 24px; cursor: pointer; border: none; background: transparent; color: var(--muted); border-bottom: 4px solid transparent; white-space: nowrap; transition: all 0.3s; }
   .nav-tab.active { color: var(--accent); border-bottom-color: var(--accent); background: white; }
 
   .main { padding: 40px 60px; max-width: 1100px; }
   .phase-view { display: none; }
   .phase-view.active { display: block; }
 
-  .phase-meta { margin-bottom: 32px; padding-bottom: 24px; border-bottom: 2px dashed var(--border); }
+  .phase-meta { margin-bottom: 32px; padding-bottom: 24px; border-bottom: 2px dashed var(--border); display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; }
   .phase-title { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 700; color: var(--accent); margin-bottom: 6px; }
   .phase-subtitle { font-size: 13px; color: var(--muted); line-height: 1.6; max-width: 600px; }
+  .phase-tag { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 1px; padding: 6px 12px; border: 1.5px solid var(--border); color: var(--muted); border-radius: 8px; white-space: nowrap; }
 
-  .sprint { margin-bottom: 36px; }
+  .sprint { margin-bottom: 40px; }
   .sprint-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
-  .sprint-num { background: var(--accent); color: white; padding: 4px 10px; border-radius: 20px; font-size: 10px; font-weight: bold; }
+  .sprint-num { background: var(--ink); color: white; padding: 4px 10px; border-radius: 8px; font-size: 10px; font-weight: bold; font-family: 'DM Mono'; }
   .sprint-title { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--ink); }
+  .sprint-focus { font-size: 11px; color: var(--muted); font-family: 'DM Mono'; margin-left: auto; }
 
-  .task { display: flex; align-items: flex-start; gap: 12px; padding: 16px; background: white; border: 2px solid var(--border); border-radius: 15px; cursor: pointer; transition: all 0.2s; margin-bottom: 10px; box-shadow: 0 4px 0 var(--border); }
+  .tasks { display: grid; gap: 10px; }
+  .task { display: flex; align-items: flex-start; gap: 12px; padding: 16px; background: white; border: 2px solid var(--border); border-radius: 15px; cursor: pointer; transition: all 0.2s; position: relative; box-shadow: 0 4px 0 var(--border); }
   .task:hover { transform: translateY(-2px); box-shadow: 0 6px 0 var(--border); border-color: var(--accent2); }
   .task.done { background: #fafafa; border-color: var(--done); box-shadow: 0 2px 0 var(--done); opacity: 0.8; }
   .task.done .task-text { text-decoration: line-through; color: var(--muted); }
 
-  .task-check { width: 22px; height: 22px; border: 2px solid var(--accent2); border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+  .task-check { width: 22px; height: 22px; border: 2px solid var(--accent2); border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; margin-top: 2px; }
   .task.done .task-check { background: var(--done); border-color: var(--done); color: white; }
   .task-check::after { content: '❤'; font-size: 10px; display: none; }
   .task.done .task-check::after { display: block; }
 
   .task-body { flex: 1; }
-  .task-text { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
-  .task-note { font-size: 12px; color: var(--muted); line-height: 1.4; }
+  .task-text { font-size: 14px; font-weight: 600; margin-bottom: 4px; line-height: 1.4; }
+  .task-note { font-size: 11px; color: var(--muted); font-family: 'DM Sans'; line-height: 1.5; }
 
-  .task-tag { font-family: 'DM Mono', monospace; font-size: 9px; padding: 4px 10px; border-radius: 20px; background: var(--cream); color: var(--accent); font-weight: bold; align-self: center; }
+  .task-tag { font-family: 'DM Mono', monospace; font-size: 9px; padding: 3px 8px; border-radius: 6px; font-weight: bold; text-transform: uppercase; margin-top: 4px; display: inline-block; }
+  
+  /* Tag Colors */
+  .tag-doc { background: #e8f0fe; color: #2f5fc8; }
+  .tag-research { background: #fef3e2; color: #b45309; }
+  .tag-build { background: #f0f7f3; color: #2a7a4b; }
+  .tag-learn { background: #fce8e6; color: #c84b2f; }
+  .tag-strategy { background: #f3e8ff; color: #6b21a8; }
 
-  .deliverable-box { background: white; border: 2px dashed var(--accent); padding: 20px 24px; border-radius: 15px; margin-top: 28px; }
-  .deliverable-box h4 { font-size: 12px; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; letter-spacing: 1px; }
+  .deliverable-box { background: white; border: 2px dashed var(--accent); padding: 24px; border-radius: 15px; margin-top: 32px; }
+  .deliverable-box h4 { font-size: 11px; font-family: 'DM Mono'; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; letter-spacing: 2px; }
   .deliverable-list { display: flex; flex-wrap: wrap; gap: 8px; }
-  .deliverable-item { font-size: 11px; padding: 6px 12px; background: var(--paper); border: 1px solid var(--border); border-radius: 10px; color: var(--accent); font-weight: 600; }
+  .deliverable-item { font-size: 11px; padding: 6px 14px; background: var(--paper); border: 1px solid var(--border); border-radius: 10px; color: var(--accent); font-weight: 600; font-family: 'DM Mono'; }
 
-  @media (max-width: 700px) { .header { padding: 32px 24px 28px; } .nav { padding: 0 24px; } .main { padding: 28px 24px; } }
+  @media (max-width: 700px) { 
+    .header { padding: 32px 24px 28px; } 
+    .nav { padding: 0 24px; } 
+    .main { padding: 28px 24px; } 
+    .phase-meta { flex-direction: column; gap: 10px; }
+    .sprint-focus { display: none; }
+  }
 </style>
 </head>
 <body>
@@ -87,116 +104,435 @@
 </div>
 
 <div class="nav">
-  <button class="nav-tab active" data-tab="m1">Foundation ☁️</button>
-  <button class="nav-tab" data-tab="m2">Offers 🍭</button>
-  <button class="nav-tab" data-tab="m3">Systems 🦄</button>
-  <button class="nav-tab" data-tab="ongoing">Rituals ✨</button>
+  <button class="nav-tab active" data-tab="m1">Month 1 — Foundation ☁️</button>
+  <button class="nav-tab" data-tab="m2">Month 2 — Services 🍭</button>
+  <button class="nav-tab" data-tab="m3">Month 3 — Systems 🦄</button>
+  <button class="nav-tab" data-tab="ongoing">Ongoing Rituals ✨</button>
 </div>
 
 <div class="main">
   <div class="phase-view active" id="m1">
     <div class="phase-meta">
-      <div class="phase-title">Month 1: Foundation</div>
-      <div class="phase-subtitle">Pure infrastructure. Before you sell, know exactly what you're building and who it's for.</div>
+      <div>
+        <div class="phase-title">Month 1: Foundation</div>
+        <div class="phase-subtitle">Before you can sell anything, you need to know exactly what you're building, who it's for, and what documents underpin the operation.</div>
+      </div>
+      <div class="phase-tag">Weeks 1–4 · ~5 hrs/week</div>
     </div>
-    
+
     <div class="sprint">
-      <div class="sprint-header"><span class="sprint-num">Sprint 1</span><span class="sprint-title">Clarity & Positioning</span></div>
+      <div class="sprint-header">
+        <span class="sprint-num">Sprint 1</span>
+        <span class="sprint-title">Clarity & Positioning</span>
+        <span class="sprint-focus">Week 1–2</span>
+      </div>
       <div class="tasks">
-        <div class="task" data-id="m1-s1-t1" onclick="toggleTask(this)"><div class="task-check"></div><div class="task-body"><div class="task-text">Write your agency's founding document</div><div class="task-note">A 1-page internal brief. Your north star.</div></div><span class="task-tag">Doc</span></div>
-        <div class="task" data-id="m1-s1-t2" onclick="toggleTask(this)"><div class="task-check"></div><div class="task-body"><div class="task-text">Define your 3 core service pillars</div><div class="task-note">Pick 3 you can do well and charge for.</div></div><span class="task-tag">Strategy</span></div>
-        <div class="task" data-id="m1-s1-t3" onclick="toggleTask(this)"><div class="task-check"></div><div class="task-body"><div class="task-text">Map your target client (ICP)</div><div class="task-note">Who are they and what is their pain point?</div></div><span class="task-tag">Strategy</span></div>
-        <div class="task" data-id="m1-s1-t4" onclick="toggleTask(this)"><div class="task-check"></div><div class="task-body"><div class="task-text">Audit existing case studies</div><div class="task-note">Write 2-3 mini docs on your wins (e.g. Love Lingo).</div></div><span class="task-tag">Doc</span></div>
+        <div class="task" data-id="m1-s1-t1" onclick="toggleTask(this)">
+          <div class="task-check"></div>
+          <div class="task-body">
+            <div class="task-text">Write your agency's founding document</div>
+            <div class="task-note">A 1-page internal brief: brand POV, problem solved, target. For you, not clients.</div>
+            <span class="task-tag tag-doc">Document</span>
+          </div>
+        </div>
+        <div class="task" data-id="m1-s1-t2" onclick="toggleTask(this)">
+          <div class="task-check"></div>
+          <div class="task-body">
+            <div class="task-text">Define your 3 core service pillars</div>
+            <div class="task-note">E.g. Podcast Production, Social Strategy, Brand Content. Don't list 10 things.</div>
+            <span class="task-tag tag-strategy">Strategy</span>
+          </div>
+        </div>
+        <div class="task" data-id="m1-s1-t3" onclick="toggleTask(this)">
+          <div class="task-check"></div>
+          <div class="task-body">
+            <div class="task-text">Map your target client (ICP)</div>
+            <div class="task-note">Who are they? Founders, D2C, MSME? What pain are they bringing to you?</div>
+            <span class="task-tag tag-strategy">Strategy</span>
+          </div>
+        </div>
+        <div class="task" data-id="m1-s1-t4" onclick="toggleTask(this)">
+          <div class="task-check"></div>
+          <div class="task-body">
+            <div class="task-text">Audit existing case studies</div>
+            <div class="task-note">Write 2-3 mini docs: Problem → Action → Result (Love Lingo, DotStory, etc).</div>
+            <span class="task-tag tag-doc">Document</span>
+          </div>
+        </div>
       </div>
     </div>
 
     <div class="sprint">
-      <div class="sprint-header"><span class="sprint-num">Sprint 2</span><span class="sprint-title">The Master Questionnaire</span></div>
-      <div class="tasks">
-        <div class="task" data-id="m1-s2-t1" onclick="toggleTask(this)"><div class="task-check"></div><div class="task-body"><div class="task-text">Research: Collect 5-8 intake questionnaires</div><div class="task-note">See what other agencies are asking.</div></div><span class="task-tag">Research</span></div>
-        <div class="task" data-id="m1-s2-t2" onclick="toggleTask(this)"><div class="task-check"></div><div class="task-body"><div class="task-text">Draft Section 1: Business Context</div><div class="task-note">15-20 questions to understand the brand.</div></div><span class="task-tag">Doc</span></div>
-        <div class="task" data-id="m1-s2-t3" onclick="toggleTask(this)"><div class="task-check"></div><div class="task-body"><div class="task-text">Draft Section 2: Audience & Positioning</div><div class="task-note">Questions to define their customer fears/wants.</div></div><span class="task-tag">Doc</span></div>
-        <div class="task" data-id="m1-s2-t4" onclick="toggleTask(this)"><div class="task-check"></div><div class="task-body"><div class="task-text">Draft Section 3: Content & Social</div><div class="task-note">Platforms, frequency, and brand accounts.</div></div><span class="task-tag">Doc</span></div>
-        <div class="task" data-id="m1-s2-t5" onclick="toggleTask(this)"><div class="task-check"></div><div class="task-body"><div class="task-text">Draft Section 4: Goals & Budget</div><div class="task-note">Success metrics and constraints.</div></div><span class="task-tag">Doc</span></div>
-        <div class="task" data-id="m1-s2-t6" onclick="toggleTask(this)"><div class="task-check"></div><div class="task-body"><div class="task-text">Write the master AI prompt</div><div class="task-note">Turn answers into a full audit output.</div></div><span class="task-tag">Build</span></div>
+        <div class="sprint-header">
+          <span class="sprint-num">Sprint 2</span>
+          <span class="sprint-title">The Master Questionnaire</span>
+          <span class="sprint-focus">Week 3–4</span>
+        </div>
+        <div class="tasks">
+          <div class="task" data-id="m1-s2-t1" onclick="toggleTask(this)">
+            <div class="task-check"></div>
+            <div class="task-body">
+              <div class="task-text">Research: collect 5–8 intake questionnaires</div>
+              <div class="task-note">Search LinkedIn, X, Reddit. Save them and note what is missing.</div>
+              <span class="task-tag tag-research">Research</span>
+            </div>
+          </div>
+          <div class="task" data-id="m1-s2-t2" onclick="toggleTask(this)">
+            <div class="task-check"></div>
+            <div class="task-body">
+              <div class="task-text">Draft Section 1: Business Context (15–20 questions)</div>
+              <div class="task-note">Brand story, team size, revenue stage, decision makers.</div>
+              <span class="task-tag tag-doc">Document</span>
+            </div>
+          </div>
+          <div class="task" data-id="m1-s2-t3" onclick="toggleTask(this)">
+            <div class="task-check"></div>
+            <div class="task-body">
+              <div class="task-text">Draft Section 2: Audience & Positioning (10–12 questions)</div>
+              <div class="task-note">Customer fears/wants, brand personality matrix prompts.</div>
+              <span class="task-tag tag-doc">Document</span>
+            </div>
+          </div>
+          <div class="task" data-id="m1-s2-t4" onclick="toggleTask(this)">
+            <div class="task-check"></div>
+            <div class="task-body">
+              <div class="task-text">Draft Section 3: Content & Social (12–15 questions)</div>
+              <div class="task-note">Current platforms, frequency, what they hate making.</div>
+              <span class="task-tag tag-doc">Document</span>
+            </div>
+          </div>
+          <div class="task" data-id="m1-s2-t5" onclick="toggleTask(this)">
+            <div class="task-check"></div>
+            <div class="task-body">
+              <div class="task-text">Draft Section 4: Goals, Budget, Constraints</div>
+              <div class="task-note">Success in 6 months, previous spend, brand guidelines.</div>
+              <span class="task-tag tag-doc">Document</span>
+            </div>
+          </div>
+          <div class="task" data-id="m1-s2-t6" onclick="toggleTask(this)">
+            <div class="task-check"></div>
+            <div class="task-body">
+              <div class="task-text">Write the master AI prompt</div>
+              <div class="task-note">Test until output yields brand audits and 3 strategic recommendations.</div>
+              <span class="task-tag tag-build">Build</span>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
 
     <div class="deliverable-box">
       <h4>Month 1 Deliverables</h4>
       <div class="deliverable-list">
-        <span class="deliverable-item">Founding brief</span><span class="deliverable-item">ICP doc</span><span class="deliverable-item">Case studies</span><span class="deliverable-item">Questionnaire</span><span class="deliverable-item">AI prompt</span>
+        <span class="deliverable-item">Founding brief</span>
+        <span class="deliverable-item">ICP doc</span>
+        <span class="deliverable-item">3 mini case studies</span>
+        <span class="deliverable-item">Master questionnaire</span>
+        <span class="deliverable-item">AI audit prompt</span>
       </div>
     </div>
   </div>
 
   <div class="phase-view" id="m2">
     <div class="phase-meta">
-      <div class="phase-title">Month 2: Services & Offers</div>
-      <div class="phase-subtitle">Building what you actually sell—packages, pricing, and contracts.</div>
-    </div>
-    <div class="sprint">
-        <div class="sprint-header"><span class="sprint-num">Sprint 3</span><span class="sprint-title">Service Packages</span></div>
-        <div class="tasks">
-            <div class="task" data-id="m2-s3-t1" onclick="toggleTask(this)"><div class="task-check"></div><div class="task-body"><div class="task-text">Build service menu document</div><div class="task-note">Deliverables per month and time commitment.</div></div><span class="task-tag">Doc</span></div>
-            <div class="task" data-id="m2-s3-t2" onclick="toggleTask(this)"><div class="task-check"></div><div class="task-body"><div class="task-text">3-tier Social Media packages</div><div class="task-note">Starter / Growth / Full Stack.</div></div><span class="task-tag">Build</span></div>
-            <div class="task" data-id="m2-s3-t3" onclick="toggleTask(this)"><div class="task-check"></div><div class="task-body"><div class="task-text">3-tier Podcast packages</div><div class="task-note">From pre-production to full-stack.</div></div><span class="task-tag">Build</span></div>
-            <div class="task" data-id="m2-s3-t4" onclick="toggleTask(this)"><div class="task-check"></div><div class="task-body"><div class="task-text">Brand Strategy project scope</div><div class="task-note">Premium one-time project scope.</div></div><span class="task-tag">Build</span></div>
-            <div class="task" data-id="m2-s3-t5" onclick="toggleTask(this)"><div class="task-check"></div><div class="task-body"><div class="task-text">Research competitor pricing</div><div class="task-note">Benchmark against 15 agencies.</div></div><span class="task-tag">Research</span></div>
+        <div>
+          <div class="phase-title">Month 2: Services & Offers</div>
+          <div class="phase-subtitle">Build what you're selling—packages, pricing, and contracts. Be ready to sign clients.</div>
         </div>
-    </div>
-    <div class="sprint">
-        <div class="sprint-header"><span class="sprint-num">Sprint 4</span><span class="sprint-title">Legal & Financial</span></div>
-        <div class="tasks">
-            <div class="task" data-id="m2-s4-t1" onclick="toggleTask(this)"><div class="task-check"></div><div class="task-body"><div class="task-text">Draft client contract template</div><div class="task-note">Include scope, payment, and kill fee.</div></div><span class="task-tag">Doc</span></div>
-            <div class="task" data-id="m2-s4-t2" onclick="toggleTask(this)"><div class="task-check"></div><div class="task-body"><div class="task-text">Build invoice template</div><div class="task-note">Professional layout in Canva/Notion.</div></div><span class="task-tag">Build</span></div>
-            <div class="task" data-id="m2-s4-t3" onclick="toggleTask(this)"><div class="task-check"></div><div class="task-body"><div class="task-text">Create proposal/SOW template</div><div class="task-note">What you send before the contract.</div></div><span class="task-tag">Doc</span></div>
-            <div class="task" data-id="m2-s4-t4" onclick="toggleTask(this)"><div class="task-check"></div><div class="task-body"><div class="task-text">Research GST requirements</div><div class="task-note">Process and thresholds for India.</div></div><span class="task-tag">Research</span></div>
-            <div class="task" data-id="m2-s4-t5" onclick="toggleTask(this)"><div class="task-check"></div><div class="task-body"><div class="task-text">Build client tracker spreadsheet</div><div class="task-note">Pipeline and active status tracking.</div></div><span class="task-tag">Build</span></div>
+        <div class="phase-tag">Weeks 5–8 · ~6 hrs/week</div>
+      </div>
+
+      <div class="sprint">
+        <div class="sprint-header">
+          <span class="sprint-num">Sprint 3</span>
+          <span class="sprint-title">Service Packages</span>
+          <span class="sprint-focus">Week 5–6</span>
         </div>
-    </div>
+        <div class="tasks">
+            <div class="task" data-id="m2-s3-t1" onclick="toggleTask(this)">
+                <div class="task-check"></div>
+                <div class="task-body">
+                  <div class="task-text">Build your service menu document</div>
+                  <div class="task-note">For each service: deliverables, turnaround, tools. Be brutally specific.</div>
+                  <span class="task-tag tag-doc">Document</span>
+                </div>
+            </div>
+            <div class="task" data-id="m2-s3-t2" onclick="toggleTask(this)">
+                <div class="task-check"></div>
+                <div class="task-body">
+                  <div class="task-text">3-tier package for Social Media Management</div>
+                  <div class="task-note">Starter / Growth / Full Stack definitions.</div>
+                  <span class="task-tag tag-build">Build</span>
+                </div>
+            </div>
+            <div class="task" data-id="m2-s3-t3" onclick="toggleTask(this)">
+                <div class="task-check"></div>
+                <div class="task-body">
+                  <div class="task-text">3-tier package for Podcast Production</div>
+                  <div class="task-note">Pre-production only / Full production / Full + social.</div>
+                  <span class="task-tag tag-build">Build</span>
+                </div>
+            </div>
+            <div class="task" data-id="m2-s3-t4" onclick="toggleTask(this)">
+                <div class="task-check"></div>
+                <div class="task-body">
+                  <div class="task-text">Brand Strategy one-time project scope</div>
+                  <div class="task-note">Deliverables, timeline, and handoff format (premium project).</div>
+                  <span class="task-tag tag-build">Build</span>
+                </div>
+            </div>
+            <div class="task" data-id="m2-s3-t5" onclick="toggleTask(this)">
+                <div class="task-check"></div>
+                <div class="task-body">
+                  <div class="task-text">Research competitor pricing</div>
+                  <div class="task-note">Audit 15 agencies/freelancers. Build a benchmark sheet.</div>
+                  <span class="task-tag tag-research">Research</span>
+                </div>
+            </div>
+        </div>
+      </div>
+
+      <div class="sprint">
+        <div class="sprint-header">
+          <span class="sprint-num">Sprint 4</span>
+          <span class="sprint-title">Legal & Financial</span>
+          <span class="sprint-focus">Week 7–8</span>
+        </div>
+        <div class="tasks">
+            <div class="task" data-id="m2-s4-t1" onclick="toggleTask(this)">
+                <div class="task-check"></div>
+                <div class="task-body">
+                  <div class="task-text">Draft a client contract template</div>
+                  <div class="task-note">Scope, payment, revisions, and the "Kill Fee" clause.</div>
+                  <span class="task-tag tag-doc">Document</span>
+                </div>
+            </div>
+            <div class="task" data-id="m2-s4-t2" onclick="toggleTask(this)">
+                <div class="task-check"></div>
+                <div class="task-body">
+                  <div class="task-text">Build an invoice template</div>
+                  <div class="task-note">Canva or Notion. Professional layout = faster payment.</div>
+                  <span class="task-tag tag-build">Build</span>
+                </div>
+            </div>
+            <div class="task" data-id="m2-s4-t3" onclick="toggleTask(this)">
+                <div class="task-check"></div>
+                <div class="task-body">
+                  <div class="task-text">Create proposal / SOW template</div>
+                  <div class="task-note">What you heard, what you propose, and investment.</div>
+                  <span class="task-tag tag-doc">Document</span>
+                </div>
+            </div>
+            <div class="task" data-id="m2-s4-t4" onclick="toggleTask(this)">
+                <div class="task-check"></div>
+                <div class="task-body">
+                  <div class="task-text">Research GST registration requirements</div>
+                  <div class="task-note">Check India thresholds and mandatory process.</div>
+                  <span class="task-tag tag-research">Research</span>
+                </div>
+            </div>
+            <div class="task" data-id="m2-s4-t5" onclick="toggleTask(this)">
+                <div class="task-check"></div>
+                <div class="task-body">
+                  <div class="task-text">Build a client tracker spreadsheet</div>
+                  <div class="task-note">Columns for lead status, contract, and invoicing.</div>
+                  <span class="task-tag tag-build">Build</span>
+                </div>
+            </div>
+        </div>
+      </div>
+
+      <div class="deliverable-box">
+        <h4>Month 2 Deliverables</h4>
+        <div class="deliverable-list">
+          <span class="deliverable-item">Service menu</span>
+          <span class="deliverable-item">3 Offer structures</span>
+          <span class="deliverable-item">Pricing sheet</span>
+          <span class="deliverable-item">Contract template</span>
+          <span class="deliverable-item">Invoice template</span>
+          <span class="deliverable-item">Proposal template</span>
+          <span class="deliverable-item">Pipeline tracker</span>
+        </div>
+      </div>
   </div>
 
   <div class="phase-view" id="m3">
     <div class="phase-meta">
-      <div class="phase-title">Month 3: Systems + R&D</div>
-      <div class="phase-subtitle">Operations to prevent burnout and deep market research.</div>
-    </div>
-    <div class="sprint">
-        <div class="sprint-header"><span class="sprint-num">Sprint 5</span><span class="sprint-title">Delivery Systems</span></div>
-        <div class="tasks">
-            <div class="task" data-id="m3-s5-t1" onclick="toggleTask(this)"><div class="task-check"></div><div class="task-body"><div class="task-text">Design onboarding flow</div><div class="task-note">Step-by-step from lead to live.</div></div><span class="task-tag">Build</span></div>
-            <div class="task" data-id="m3-s5-t2" onclick="toggleTask(this)"><div class="task-check"></div><div class="task-body"><div class="task-text">Build onboarding kit</div><div class="task-note">What the client gets on Day 1.</div></div><span class="task-tag">Doc</span></div>
-            <div class="task" data-id="m3-s5-t3" onclick="toggleTask(this)"><div class="task-check"></div><div class="task-body"><div class="task-text">Social Media delivery SOP</div><div class="task-note">Approval flow and feedback rules.</div></div><span class="task-tag">Doc</span></div>
-            <div class="task" data-id="m3-s5-t4" onclick="toggleTask(this)"><div class="task-check"></div><div class="task-body"><div class="task-text">Podcast production SOP</div><div class="task-note">Pre-production to publishing.</div></div><span class="task-tag">Doc</span></div>
-            <div class="task" data-id="m3-s5-t5" onclick="toggleTask(this)"><div class="task-check"></div><div class="task-body"><div class="task-text">Monthly reporting template</div><div class="task-note">Retention tool focused on metrics.</div></div><span class="task-tag">Build</span></div>
+        <div>
+          <div class="phase-title">Month 3: Systems + R&D</div>
+          <div class="phase-subtitle">Operational systems for zero burnout. Plus: deep-dive into Udaipur and International markets.</div>
         </div>
-    </div>
-    <div class="sprint">
-        <div class="sprint-header"><span class="sprint-num">Sprint 6</span><span class="sprint-title">Market Research</span></div>
-        <div class="tasks">
-            <div class="task" data-id="m3-s6-t1" onclick="toggleTask(this)"><div class="task-check"></div><div class="task-body"><div class="task-text">Udaipur Business Mapping</div><div class="task-note">Identify businesses outsourcing to Jaipur.</div></div><span class="task-tag">Research</span></div>
-            <div class="task" data-id="m3-s6-t2" onclick="toggleTask(this)"><div class="task-check"></div><div class="task-body"><div class="task-text">Remote Client Tool Stack</div><div class="task-note">Notion, Wise, Loom, etc.</div></div><span class="task-tag">Build</span></div>
-            <div class="task" data-id="m3-s6-t3" onclick="toggleTask(this)"><div class="task-check"></div><div class="task-body"><div class="task-text">International Pricing Framework</div><div class="task-note">Geo-based tiering (India vs UK/US).</div></div><span class="task-tag">Strategy</span></div>
+        <div class="phase-tag">Weeks 9–12 · ~6 hrs/week</div>
+      </div>
+
+      <div class="sprint">
+        <div class="sprint-header">
+          <span class="sprint-num">Sprint 5</span>
+          <span class="sprint-title">Onboarding & Delivery</span>
+          <span class="sprint-focus">Week 9–10</span>
         </div>
-    </div>
+        <div class="tasks">
+            <div class="task" data-id="m3-s5-t1" onclick="toggleTask(this)">
+                <div class="task-check"></div>
+                <div class="task-body">
+                  <div class="task-text">Design full client onboarding flow</div>
+                  <div class="task-note">From discovery call → contract → kickoff.</div>
+                  <span class="task-tag tag-build">Build</span>
+                </div>
+            </div>
+            <div class="task" data-id="m3-s5-t2" onclick="toggleTask(this)">
+                <div class="task-check"></div>
+                <div class="task-body">
+                  <div class="task-text">Build a client onboarding kit</div>
+                  <div class="task-note">The Notion or G-Doc they get on Day 1. Sets the tone.</div>
+                  <span class="task-tag tag-doc">Document</span>
+                </div>
+            </div>
+            <div class="task" data-id="m3-s5-t3" onclick="toggleTask(this)">
+                <div class="task-check"></div>
+                <div class="task-body">
+                  <div class="task-text">Build a content delivery SOP</div>
+                  <div class="task-note">How you deliver for approval. Define revision rounds.</div>
+                  <span class="task-tag tag-doc">Document</span>
+                </div>
+            </div>
+            <div class="task" data-id="m3-s5-t4" onclick="toggleTask(this)">
+                <div class="task-check"></div>
+                <div class="task-body">
+                  <div class="task-text">Build a podcast production SOP</div>
+                  <div class="task-note">Briefs, editing, show notes, and publish checklist.</div>
+                  <span class="task-tag tag-doc">Document</span>
+                </div>
+            </div>
+            <div class="task" data-id="m3-s5-t5" onclick="toggleTask(this)">
+                <div class="task-check"></div>
+                <div class="task-body">
+                  <div class="task-text">Monthly reporting template</div>
+                  <div class="task-note">Reach, saves, DMs, growth. A retention tool.</div>
+                  <span class="task-tag tag-build">Build</span>
+                </div>
+            </div>
+        </div>
+      </div>
+
+      <div class="sprint">
+        <div class="sprint-header">
+          <span class="sprint-num">Sprint 6</span>
+          <span class="sprint-title">Market Strategy (Udaipur + Global)</span>
+          <span class="sprint-focus">Week 11–12</span>
+        </div>
+        <div class="tasks">
+            <div class="task" data-id="m3-s6-t1" onclick="toggleTask(this)">
+                <div class="task-check"></div>
+                <div class="task-body">
+                  <div class="task-text">Udaipur Market Research</div>
+                  <div class="task-note">Talk to 3-5 owners. Identify businesses outsourcing to Jaipur.</div>
+                  <span class="task-tag tag-research">Research</span>
+                </div>
+            </div>
+            <div class="task" data-id="m3-s6-t2" onclick="toggleTask(this)">
+                <div class="task-check"></div>
+                <div class="task-body">
+                  <div class="task-text">Write 2-page Udaipur Opportunity brief</div>
+                  <div class="task-note">The gap, the play, and priority segments.</div>
+                  <span class="task-tag tag-strategy">Strategy</span>
+                </div>
+            </div>
+            <div class="task" data-id="m3-s6-t3" onclick="toggleTask(this)">
+                <div class="task-check"></div>
+                <div class="task-body">
+                  <div class="task-text">Design remote client tool stack</div>
+                  <div class="task-note">Notion, Loom, Wise, Slack. Async zero-friction delivery.</div>
+                  <span class="task-tag tag-build">Build</span>
+                </div>
+            </div>
+            <div class="task" data-id="m3-s6-t4" onclick="toggleTask(this)">
+                <div class="task-check"></div>
+                <div class="task-body">
+                  <div class="task-text">International payment research</div>
+                  <div class="task-note">Wise vs Stripe vs Razorpay. FEMA compliance.</div>
+                  <span class="task-tag tag-research">Research</span>
+                </div>
+            </div>
+            <div class="task" data-id="m3-s6-t5" onclick="toggleTask(this)">
+                <div class="task-check"></div>
+                <div class="task-body">
+                  <div class="task-text">Geo-based pricing framework</div>
+                  <div class="task-note">3-5x higher rates for UK/US/UAE clients. Rate card.</div>
+                  <span class="task-tag tag-research">Research</span>
+                </div>
+            </div>
+            <div class="task" data-id="m3-s6-t6" onclick="toggleTask(this)">
+                <div class="task-check"></div>
+                <div class="task-body">
+                  <div class="task-text">Skill gap audit</div>
+                  <div class="task-note">Meta Ads, SEO, email. Rank by revenue impact.</div>
+                  <span class="task-tag tag-learn">Learn</span>
+                </div>
+            </div>
+        </div>
+      </div>
+
+      <div class="deliverable-box">
+        <h4>Month 3 Deliverables</h4>
+        <div class="deliverable-list">
+          <span class="deliverable-item">Onboarding flow</span>
+          <span class="deliverable-item">SOP Kit</span>
+          <span class="deliverable-item">Reporting template</span>
+          <span class="deliverable-item">Udaipur Brief</span>
+          <span class="deliverable-item">Remote Stack</span>
+          <span class="deliverable-item">Payment Guide</span>
+        </div>
+      </div>
   </div>
 
   <div class="phase-view" id="ongoing">
     <div class="phase-meta">
-      <div class="phase-title">Ongoing Rituals</div>
-      <div class="phase-subtitle">Weekly and monthly habits that ensure long-term growth.</div>
-    </div>
-    <div class="tasks">
-        <div class="task" data-id="rit-w1" onclick="toggleTask(this)"><div class="task-check"></div><div class="task-body"><div class="task-text">NBFC Job Documentation (Weekly)</div><div class="task-note">Document one thing you learned about B2B strategy.</div></div><span class="task-tag">Learn</span></div>
-        <div class="task" data-id="rit-w2" onclick="toggleTask(this)"><div class="task-check"></div><div class="task-body"><div class="task-text">Agency Case Study Review (Weekly)</div><div class="task-note">Read one owner's newsletter/strategy.</div></div><span class="task-tag">Research</span></div>
-        <div class="task" data-id="rit-m1" onclick="toggleTask(this)"><div class="task-check"></div><div class="task-body"><div class="task-text">Monthly Retrospective</div><div class="task-note">What did you build? What's blocking you?</div></div><span class="task-tag">Strategy</span></div>
-    </div>
+        <div>
+          <div class="phase-title">Ongoing Rituals</div>
+          <div class="phase-subtitle">Non-negotiable habits that compound over 12 months.</div>
+        </div>
+        <div class="phase-tag">Every week · ~2 hrs</div>
+      </div>
+      
+      <div class="tasks">
+        <div class="task" data-id="rit-w1" onclick="toggleTask(this)">
+            <div class="task-check"></div>
+            <div class="task-body">
+              <div class="task-text">Weekly: Document NBFC learnings</div>
+              <div class="task-note">B2B strategy, regulated industry content — it's gold for positioning.</div>
+              <span class="task-tag tag-learn">Learn</span>
+            </div>
+        </div>
+        <div class="task" data-id="rit-w2" onclick="toggleTask(this)">
+            <div class="task-check"></div>
+            <div class="task-body">
+              <div class="task-text">Weekly: Case Study Review</div>
+              <div class="task-note">Newsletter recommendations: Varun Mayya, Nathan Barry.</div>
+              <span class="task-tag tag-research">Research</span>
+            </div>
+        </div>
+        <div class="task" data-id="rit-m1" onclick="toggleTask(this)">
+            <div class="task-check"></div>
+            <div class="task-body">
+              <div class="task-text">Monthly: End-of-month Retrospective</div>
+              <div class="task-note">Honest 1-page note: What's blocking you? Fix it.</div>
+              <span class="task-tag tag-strategy">Strategy</span>
+            </div>
+        </div>
+        <div class="task" data-id="rit-m2" onclick="toggleTask(this)">
+            <div class="task-check"></div>
+            <div class="task-body">
+              <div class="task-text">Monthly: Agency Network Reachout</div>
+              <div class="task-note">DM one person who runs an agency. Ask one real question.</div>
+              <span class="task-tag tag-research">Research</span>
+            </div>
+        </div>
+      </div>
   </div>
 </div>
 
 <script>
-  // TAB NAVIGATION
+  // TAB SYSTEM
   document.querySelectorAll('.nav-tab').forEach(function(btn) {
     btn.addEventListener('click', function() {
       var tabId = this.getAttribute('data-tab');
@@ -207,17 +543,18 @@
     });
   });
 
-  // PROGRESS & LOCALSTORAGE
+  // PROGRESS & MEMORY
   function updateProgress() {
     var all = document.querySelectorAll('.task');
     var done = document.querySelectorAll('.task.done');
     var pct = all.length ? Math.round((done.length / all.length) * 100) : 0;
-    document.getElementById('globalFill').style.width = pct + '%';
-    document.getElementById('globalLabel').textContent = done.length + ' / ' + all.length + ' tasks done!';
     
-    // Save checked data-ids to memory
+    document.getElementById('globalFill').style.width = pct + '%';
+    document.getElementById('globalLabel').textContent = done.length + ' / ' + all.length + ' tasks done! (' + pct + '%)';
+    
+    // SAVE checked data-ids to browser memory
     const completedIds = Array.from(done).map(t => t.getAttribute('data-id'));
-    localStorage.setItem('hitikaAgencyRoadmap', JSON.stringify(completedIds));
+    localStorage.setItem('hitikaMasterRoadmap', JSON.stringify(completedIds));
   }
 
   function toggleTask(el) { 
@@ -227,7 +564,7 @@
 
   // ON LOAD: RETRIEVE FROM MEMORY
   window.onload = function() {
-    const saved = JSON.parse(localStorage.getItem('hitikaAgencyRoadmap')) || [];
+    const saved = JSON.parse(localStorage.getItem('hitikaMasterRoadmap')) || [];
     saved.forEach(id => {
       const task = document.querySelector(`[data-id="${id}"]`);
       if (task) task.classList.add('done');
